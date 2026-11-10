@@ -1,0 +1,83 @@
+
+.custom-dropdown .admin-btn {
+  background-color: transparent ;
+  color: #fff ; 
+  border: 1px solid #b79067;
+  border-radius: 12px ;
+  width: 5.5em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  box-shadow: none ;
+}
+arrow {
+  display: inline-block;
+  margin-left: 5px;       
+  transition: transform 0.25s ease; 
+}
+
+
+.arrow.rotated {
+  transform: rotate(180deg); 
+  color:#4a5568;
+}
+
+
+.custom-dropdown .admin-btn::after {
+  display: none ;
+}
+
+.custom-dropdown .admin-btn .arrow {
+  font-size: 0.8rem;
+}
+
+
+.custom-dropdown .custom-menu {
+  background-color: #ffffff ;
+  border-radius: 24px ;
+  border: none ;
+  padding: 15px 10px ;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  margin-top: 10px ;
+}
+
+.custom-dropdown .custom-item {
+  display: flex ;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px ;
+  color: #4a5568 ; 
+  font-size: 1.1rem;
+  background: transparent ;
+  transition: background 0.2s ease;
+  border-radius: 12px;
+}
+
+.custom-dropdown .custom-item:hover {
+  background-color: #f7fafc ; 
+}
+
+
+.custom-dropdown .custom-item .icon {
+  color: #c49a6c; 
+  font-size: 1.4rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+}
+
+
+.custom-dropdown .text-wrapper {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+span
+{
+color: #b79067;
+}

@@ -1,0 +1,137 @@
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import App from "./App";
+import Home from "./pages/Home";
+import Products from "./pages/MenuPage/Products";
+import CreateProductPage from "./pages/CRUD/CreateProductPage";
+import EditProductPage from "./pages/CRUD/EditProductPage";
+import CartPage from "./pages/Cart/CartPage";
+import ContactPage from "./pages/MenuPage/ContactPage";
+import QuienesSomos from "./pages/QuienesSomos";
+import Login from "./pages/Login-Registro/Login";
+import Register from "./pages/Login-Registro/Register";
+import OrdersPage from "./pages/MenuPage/OrderPage";
+import CheckoutWhatsApp from "./pages/Cart/CheckoutWhatsApp";
+// Rutas de Administración y Protección
+import {ROLES} from "./utils/constants.js";
+import AdminRoute from "./components/Admin/AdminRoute";
+import ProtectedRoute from "./components/Layout/ProtectedRoute";
+import ProductManagementPage from "./pages/Admin/ProductManagementPage";
+import OrderManagementPage from "./pages/Admin/OrderManagementPage";
+import UserManagementPage from "./pages/Admin/UserManagementPage";
+
+export const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
+        children: [
+            {
+                index: true,
+                element: <Home />
+            },
+            {
+                path: "contact",
+                element: <ContactPage />
+            },
+            {
+                path: "products",
+                element: <Products />
+            },
+            {
+                path: "products/category/:category_id",
+                element: <Products />
+            },
+            // Paneles de Administración Protegidos por Rol
+            {
+                path: "admin",
+                element: (
+                    <AdminRoute>
+                        <Navigate to="/admin/products" replace />
+                    </AdminRoute>
+                )
+            },
+            {
+                path: "admin/products",
+                element: (
+                    <AdminRoute>
+                        <ProductManagementPage />
+                    </AdminRoute>
+                )
+            },
+            {
+                path: "admin/orders",
+                element: (
+                    <AdminRoute>
+                        <OrderManagementPage />
+                    </AdminRoute>
+                )
+            },
+            {
+                path: "admin/users",
+                element: (
+                    <AdminRoute>
+                        <UserManagementPage />
+                    </AdminRoute>
+                )
+            },
+            {
+                path: "create-product",
+                element: (
+                    <ProtectedRoute roles={["vendedor", "admin"]}>
+                        <CreateProductPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "edit-product/:id",
+                element: (
+                    <AdminRoute>
+                        <EditProductPage />
+                    </AdminRoute>
+                )
+            },
+            {
+                path: "quienessomos",
+                element: <QuienesSomos />
+            },
+            {
+                path: "cart",
+                element: <CartPage />
+            },
+            {
+                path: "orders",
+                element: (
+                    <ProtectedRoute roles={["comprador"]}>
+                        <OrdersPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "checkout",
+                element: (
+                    <ProtectedRoute roles={[ROLES.COMPRADOR]}>
+                        <CheckoutWhatsApp />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "register",
+                element: <Register />
+            },
+            {
+                path: "log-in",
+                element: <Login />
+            },
+            {
+                path: "*",
+                element: (
+                    <div style={{ padding: '60px 20px', textAlign: 'center', fontFamily: 'Arimo, sans-serif' }}>
+                        <h2 style={{ fontFamily: 'Great Vibes, cursive', fontSize: '60px', color: '#b79067' }}>
+                            ⚠️ Error 404 ⚠️
+                        </h2>
+                        <p style={{ color: '#464d5d', fontSize: '18px' }}>Página no encontrada</p>
+                    </div>
+                )
+            }
+        ]
+    }
+]);

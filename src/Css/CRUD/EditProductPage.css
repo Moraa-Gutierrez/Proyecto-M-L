@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+.admin-layout {
+    background-color: #f8f9fa;
+    font-family: "Arimo", sans-serif;
+    color: #464d5d;
+    padding: 2.5rem 1.5rem;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.admin-main {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* Encabezado de la página admin */
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(70, 77, 93, 0.1);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.admin-page-header__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #464d5d;
+    margin: 0 0 0.4rem 0;
+}
+
+.admin-page-header__sub {
+    font-size: 0.95rem;
+    color: #717784;
+    margin: 0;
+}
+
+.btn-secondary-admin {
+    padding: 0.75rem 1.4rem;
+    font-family: "Arimo", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid rgba(70, 77, 93, 0.25);
+    border-radius: 8px;
+    background-color: #464d5d;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-secondary-admin:hover {
+    background-color: #383e4b;
+    box-shadow: 0 4px 12px rgba(70, 77, 93, 0.2);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   GRILLA DE DOS COLUMNAS BALANCEADAS (FORMULARIO + VISTA PREVIA)
+   ========================================================================== */
+.admin-grid-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 40px;
+    align-items: start;
+    margin-top: 24px;
+}
+
+@media (max-width: 960px) {
+    .admin-grid-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+/* Columna del formulario (Izquierda) */
+.admin-form-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(70, 77, 93, 0.07);
+    padding: 2.2rem;
+    border: 1px solid rgba(70, 77, 93, 0.08);
+}
+
+.admin-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.4rem;
+}
+
+.admin-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+@media (max-width: 550px) {
+    .admin-form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.admin-form-group label {
+    font-family: "Arimo", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #464d5d;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.admin-form-card input[type="text"],
+.admin-form-card input[type="number"],
+.admin-form-card textarea,
+.admin-form-card select {
+    padding: 0.8rem 1rem;
+    font-family: "Arimo", sans-serif;
+    font-size: 0.95rem;
+    border: 1px solid rgba(70, 77, 93, 0.25);
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #464d5d;
+    transition: all 0.25s ease;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.admin-form-card textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.admin-form-card input:focus,
+.admin-form-card textarea:focus,
+.admin-form-card select:focus {
+    border-color: #b79067;
+    box-shadow: 0 0 0 3.5px rgba(183, 144, 103, 0.2);
+}
+
+.admin-form-card input::placeholder,
+.admin-form-card textarea::placeholder {
+    color: #9ea4b0;
+}
+
+/* Acciones del Formulario */
+.admin-form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(70, 77, 93, 0.1);
+    padding-top: 1.6rem;
+}
+
+.btn-admin-submit {
+    background-color: #b79067;
+    color: #ffffff;
+    border: none;
+    padding: 0.85rem 2rem;
+    font-family: "Arimo", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex: 2;
+    box-shadow: 0 4px 12px rgba(183, 144, 103, 0.3);
+}
+
+.btn-admin-submit:hover {
+    background-color: #a47f56;
+    box-shadow: 0 6px 16px rgba(183, 144, 103, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-admin-reset {
+    background-color: transparent;
+    color: #464d5d;
+    border: 1px solid rgba(70, 77, 93, 0.3);
+    padding: 0.85rem 1.5rem;
+    font-family: "Arimo", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex: 1;
+}
+
+.btn-admin-reset:hover {
+    background-color: rgba(70, 77, 93, 0.06);
+    border-color: #464d5d;
+}
+
+.admin-form-error {
+    background-color: #fdf2f2;
+    color: #de3a3a;
+    border-left: 4px solid #de3a3a;
+    padding: 0.85rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    margin: 1.2rem 0;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   COLUMNA Y CONTENEDOR DE LA VISTA PREVIA (FIJADO DE TAMAÑO Y PROPORCIONES)
+   ========================================================================== */
+.admin-preview-column {
+    width: 100%;
+    max-width: 360px;
+    position: sticky;
+    top: 24px;
+    margin: 0 auto;
+}
+
+.admin-preview-header {
+    background-color: #ffffff;
+    border-radius: 12px 12px 0 0;
+    padding: 16px 20px;
+    border: 1px solid rgba(70, 77, 93, 0.08);
+    border-bottom: 1px solid rgba(70, 77, 93, 0.1);
+}
+
+.admin-preview-title {
+    font-size: 1.05rem;
+    color: #464d5d;
+    margin: 0;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-preview-separator {
+    border: 0;
+    height: 1px;
+    background-color: rgba(70, 77, 93, 0.1);
+    margin: 0;
+}
+
+.admin-preview-card-wrapper {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Reglas sobre la tarjeta en vista previa para mantener proporciones completas sin comprimirse */
+.admin-preview-column .cards-wrapper {
+    padding: 0 !important;
+    max-width: 100% !important;
+}
+
+.admin-preview-column .cards {
+    display: block !important;
+    grid-template-columns: none !important;
+    padding: 0 !important;
+}
+
+.admin-preview-column .tarjeta {
+    width: 100% !important;
+    min-width: 310px !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important;
+    margin: 0 auto !important;
+}

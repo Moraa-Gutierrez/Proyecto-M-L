@@ -1,0 +1,73 @@
+import mongoose from "mongoose";
+
+// Sub-esquema para los ítems embebidos (con snapshot del producto al momento de la compra)
+const orderItemSchema = new mongoose.Schema({
+    product_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        required: [true, "El ID del producto es obligatorio"]
+    },
+    product_name: {
+        type: String,
+        required: [true, "El nombre del producto es obligatorio"]
+    },
+    unit_price: {
+        type: Number,
+        required: [true, "El precio unitario es obligatorio"]
+    },
+    quantity: {
+        type: Number,
+        required: [true, "La cantidad es obligatoria"],
+        min: [1, "La cantidad mínima debe ser 1"]
+    }
+}, { _id: false });
+
+// Sub-esquema para los datos de envío (opcional si está en draft)
+const shippingSchema = new mongoose.Schema({
+    street: { 
+        type: String, 
+        required: function() { return this.parent().delivery_method === 'domicilio'; } 
+    },
+    city: { 
+        type: String, 
+        required: function() { return this.parent().delivery_method === 'domicilio'; } 
+    },
+    zip_code: { 
+        type: String, 
+        required: function() { return this.parent().delivery_method === 'domicilio'; } 
+    }
+}, { _id: false });
+
+const orderSchema = new mongoose.Schema({
+    order_number: { type: String, default: null },
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: [true, "El usuario es obligatorio"]
+    },
+    status: {
+        type: String,
+        enum: ["draft", "pending", "confirmed", "shipped", "completed", "cancelled"],
+        default: "draft"
+    },
+    delivery_method: { 
+        type: String, 
+        enum: ["domicilio", "retiro"],
+        default: "domicilio" 
+    },
+    total_amount: {
+        type: Number,
+        required: [true, "El monto total es obligatorio"],
+        min: [0, "El total no puede ser negativo"],
+        default: 0
+    },
+    items: [orderItemSchema],
+    shipping: {
+        type: shippingSchema,
+        default: null
+    }
+}, {
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } // Mapea las fechas con los nombres de tu diagrama
+});
+
+export const Order = mongoose.model("Order", orderSchema);
